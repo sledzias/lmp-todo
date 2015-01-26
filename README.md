@@ -1,48 +1,22 @@
-Lmp Todo
-================
+# Zadanie dodatkowe dla kandydatów na stanowisko Junior RoR Dev
+Projekt jest prostą aplikacją todo. Należy zaimplementować następujące funkcje:
 
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
+## Zadania:
+- wygenerować scaffold dla modelu `Task` (z polami `done` i `description`). Pole `description` nie może być puste;
+- `User` ma mieć dostęp tylko do zadań, które sam stworzył (Pundit);
+- po wpisaniu adresu `/tasks` ma pojawić się widok pokazujący wszystkie zadania (szablon dla tego widoku jest obecnie dostępny w _visitors/index.html.erb_)
+- oznaczenie zadania jako wykonane powinno odbywać się przez wciśnięcie przycisku z symbolem _check_ („ptaszek”). Odznaczenie w ten sam sposób. To, czy zadanie jest wykonane powinno być zaznaczone kolorem ptaszka (zielone - wykonane, szare - do wykonania);
+- wciśnięcie krzyżyka usuwa zadanie;
+- użytkownik może edytować każde zadanie, po opuszczeniu formularza (zdarzenie `blur()`) zadanie powinno być zapisane
+- wciśnięcie plusa dodaje zadanie wpisane w inpucie obok;
+- wciśnięcie przycisku _Mark all as complete_ powinno zaznaczyć wszystkie zadania jako wykonane;
+- kliknięcie linków _all_, _active_, _completed_ powinno filtrować  listę zadań (obok linków powinna być wyświetlona liczba zadań odpowiadających filtrowi);
+- przycisk _Clear completed_ usuwa wszystkie wykonane zadania;
+- stopka zawsze powinna być na dole strony, niezależnie od liczby zadań (tzw. „sticky footer”)
 
-Rails Composer is open source and supported by subscribers. Please join RailsApps to support development of Rails Composer.
-
-Problems? Issues?
------------
-
-Need help? Ask on Stack Overflow with the tag 'railsapps.'
-
-Your application contains diagnostics in the README file. Please provide a copy of the README file when reporting any issues.
-
-If the application doesn't work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include the diagnostics.
-
-Ruby on Rails
--------------
-
-This application requires:
-
-- Ruby 2.1.2
-- Rails 4.2.0
-
-Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
-
-Getting Started
----------------
-
-Documentation and Support
--------------------------
-
-Issues
--------------
-
-Similar Projects
-----------------
-
-Contributing
-------------
-
-Credits
--------
-
-License
--------
+## Zasady:
+- każde zadanie powinno być w oddzielnym commicie;
+- całość powinna zająć ok 3h;
+- bardziej docenimy czytelny kod, niż wykonanie wszystkich zadań;
+- rozwiązania proszę zgłaszać jako pull-request do tego repozytorium
+- na rozwiązania czekamy do niedzieli (1 lutego)
