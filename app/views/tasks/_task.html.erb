@@ -11,7 +11,7 @@
 
           </span>
           <form>
-            <input class="edit form-control input-lg" value="<%= task.description%>">
+            <input class="edit form-control input-lg" value="<%= task.description%>" data-task-id="<%= task.id %>">
           </form>
           <span class="input-group-btn">
             <button class="btn btn-default btn-lg destroy" data-task-id="<%= task.id %>"><i class="glyphicon glyphicon-remove"></i></button>
