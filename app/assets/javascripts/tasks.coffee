@@ -52,6 +52,16 @@ TaskProcessor =
         console.log 'Toggled all'
         TaskProcessor.mark_all_done()
 
+  clear_completed: -> 
+    $.ajax
+      type: 'POST'
+      url: "/tasks/clear_completed"
+      dataType: "json"
+      error: (jqXHR, textStatus, errorThrown) ->
+        alert 'Sorry, something went wrong!'
+      success: (data, textStatus, jqXHR) ->
+        TaskProcessor.remove_completed_tasks()
+
   adjust_checkmark: (task_id, data) ->
     mark_to_adjust = $("i[data-task-id=#{task_id}]")
     mark_to_adjust.toggleClass("task-done-checkmark")
@@ -64,6 +74,11 @@ TaskProcessor =
     done_marks = $('.mark-as-done')
     done_marks.each ->
       $(this).addClass("task-done-checkmark") unless $(this).hasClass("task-done-checkmark")
+
+  remove_completed_tasks: ->
+    completed_tasks = $(".task-done-checkmark")
+    completed_tasks.each ->
+      $(this).parentsUntil('div.row').remove()
       
 jQuery ->
   mark_as_done = $(".mark-as-done")
@@ -71,6 +86,7 @@ jQuery ->
   edit_task_form = $('.edit')
   create = $("#create-btn")
   toggle_all = $('#toggle-all')
+  clear_completed = $('#clear-completed')
 
   mark_as_done.on 'click', () ->
     task_id = $(this).data('task-id')
@@ -91,3 +107,6 @@ jQuery ->
 
   toggle_all.on 'click', ->
     TaskProcessor.toggle_all()
+
+  clear_completed.on 'click', ->
+    TaskProcessor.clear_completed()
