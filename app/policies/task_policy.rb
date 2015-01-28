@@ -5,25 +5,29 @@ class TaskPolicy < ApplicationPolicy
     @user = user
     @task = task
   end
+  
+  def toggle_done?
+    @task.user_id == @user.id
+  end
 
   def show?
     @task.user_id == @user.id
- end
-
- def update?
-  @task.user_id == @user.id
- end
-
- def edit?
-  @task.user_id == @user.id
- end
-
- def destroy?
-  @task.user_id == @user.id
-end
-class Scope < Scope
-  def resolve
-    scope.where(:user_id => @user.id)
   end
-end
+
+  def update?
+    @task.user_id == @user.id
+  end
+
+  def edit?
+    @task.user_id == @user.id
+  end
+
+  def destroy?
+    @task.user_id == @user.id
+  end
+  class Scope < Scope
+    def resolve
+      scope.where(:user_id => @user.id)
+    end
+  end
 end

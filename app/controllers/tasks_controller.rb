@@ -1,11 +1,19 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :toggle_done]
   after_action :verify_authorized, :except => [:index, :new, :create]
   after_action :verify_policy_scoped, :only => [:index]
 
+  def toggle_done
+    authorize @task
+    @task.done == true ? @task.done = false : @task.done = true
+    @task.save
+    respond_to do |format|
+      format.json {render :json => @task.done}
+    end
+  end
+
   def index
     @tasks = policy_scope(Task)
-     render :template => "visitors/index"
   end
 
   def show
