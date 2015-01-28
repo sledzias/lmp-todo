@@ -30,12 +30,12 @@ TaskProcessor =
       success: (data, textStatus, jqXHR) ->
         console.log 'Updated' 
 
-  create: (input) ->
+  create: (input, user_id) ->
     $.ajax
       type: 'POST'
       url: "/tasks"
       dataType: "json"
-      data: {"task": {"done":"0", "description":"#{input}", "user_id":"1"}}
+      data: {"task": {"done":"0", "description":"#{input}", "user_id":"#{user_id}"}}
       error: (jqXHR, textStatus, errorThrown) ->
         alert 'Sorry, something went wrong!'
       success: (data, textStatus, jqXHR) ->
@@ -87,6 +87,7 @@ jQuery ->
   create = $("#create-btn")
   toggle_all = $('#toggle-all')
   clear_completed = $('#clear-completed')
+  user = $('#user-id').data('user-id')
 
   mark_as_done.on 'click', () ->
     task_id = $(this).data('task-id')
@@ -102,8 +103,9 @@ jQuery ->
     TaskProcessor.update_task(task, input)
 
   create.on 'click', ->
-    input = $('#new-todo').val()
-    TaskProcessor.create(input)
+    if user?
+      input = $('#new-todo').val()
+      TaskProcessor.create(input, user)
 
   toggle_all.on 'click', ->
     TaskProcessor.toggle_all()

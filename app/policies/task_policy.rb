@@ -25,9 +25,14 @@ class TaskPolicy < ApplicationPolicy
   def destroy?
     @task.user_id == @user.id
   end
+
   class Scope < Scope
     def resolve
-      scope.where(:user_id => @user.id)
+      if @user.present?
+        scope.where(:user_id => @user.id)
+      else
+        scope.where(:user_id => nil)
+      end
     end
   end
 end
