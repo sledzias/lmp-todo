@@ -5,6 +5,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = policy_scope(Task)
+     render :template => "visitors/index"
   end
 
   def show
