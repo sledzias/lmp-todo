@@ -1,11 +1,24 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy, :toggle_done]
-  after_action :verify_authorized, :except => [:index, :new, :create]
-  after_action :verify_policy_scoped, :only => [:index]
+  after_action :verify_authorized, :except => [:index, :new, :create, :toggle_all]
+  after_action :verify_policy_scoped, :only => [:index, :toggle_all]
+
+  def toggle_all
+    tasks = policy_scope(Task)
+    tasks.each do |task| 
+      unless task.available?
+        task.done = true
+        task.save
+      end
+    end
+    respond_to do |format|
+      format.json { head :no_content }
+    end
+  end
 
   def toggle_done
     authorize @task
-    @task.done == true ? @task.done = false : @task.done = true
+    @task.done? ? @task.done = false : @task.done = true
     @task.save
     respond_to do |format|
       format.json {render :json => @task.done}
