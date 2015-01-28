@@ -30,6 +30,17 @@ TaskProcessor =
       success: (data, textStatus, jqXHR) ->
         console.log 'Updated' 
 
+  create: (input) ->
+    $.ajax
+      type: 'POST'
+      url: "/tasks"
+      dataType: "json"
+      data: {"task": {"done":"0", "description":"#{input}", "user_id":"1"}}
+      error: (jqXHR, textStatus, errorThrown) ->
+        alert 'Sorry, something went wrong!'
+      success: (data, textStatus, jqXHR) ->
+        window.location.href = data.location
+
   adjust_checkmark: (task_id, data) ->
     mark_to_adjust = $("i[data-task-id=#{task_id}]")
     mark_to_adjust.toggleClass("task-done-checkmark")
@@ -42,6 +53,7 @@ jQuery ->
   mark_as_done = $(".mark-as-done")
   destroy = $(".destroy")
   edit_task_form = $('.edit')
+  create = $("#create-btn")
 
   mark_as_done.on 'click', () ->
     task_id = $(this).data('task-id')
@@ -55,3 +67,7 @@ jQuery ->
     task = $(this).data('task-id')
     input = $(this).val()
     TaskProcessor.update_task(task, input)
+
+  create.on 'click', ->
+    input = $('#new-todo').val()
+    TaskProcessor.create(input)

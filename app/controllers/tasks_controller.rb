@@ -33,7 +33,10 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render :json => @task }
+        format.json { render :json => {
+          :location => url_for(:controller => 'tasks', :action => 'index'),
+          :task => @task}
+         }
       else
         format.html { render :new }
         format.json { render json: @task.errors, status: :unprocessable_entity }
