@@ -14,5 +14,9 @@ $(document).ready(function() {
 	$(".btn, .destroy").on("click", function(){
 		$(".edit, .form-control, .input-lg").removeData();
 	})
-	
+
+	$("#toggle-all").on("click", function(){
+		$(".mark-as-done").val() === true;
+	})
+
 });
