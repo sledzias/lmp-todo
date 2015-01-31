@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
-  respond_to :html
+  respond_to :json
 
   def index
     @tasks = policy_scope(Task)
@@ -44,6 +44,6 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:done, :description)
+      params.require(:task).permit(:done, :description, :user_id)
     end
 end
