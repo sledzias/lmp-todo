@@ -19,4 +19,9 @@ $(document).ready(function() {
 		$(".mark-as-done").val() === true;
 	})
 
+	$("#clear-completed").on("click", function(){
+		if ($(".mark-as-done").val() === true) {
+			$(this).removeData();
+		}
+	})
 });
