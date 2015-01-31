@@ -8,6 +8,11 @@ $(document).ready(function() {
 	})
 
 	if ($(".mark-as-done").val() === true) {
-		$(this).addClass(checkmark-done)
+		$(this).addClass(checkmark-done);
 	}
+
+	$(".btn, .destroy").on("click", function(){
+		$(".edit, .form-control, .input-lg").removeData();
+	})
+	
 });
