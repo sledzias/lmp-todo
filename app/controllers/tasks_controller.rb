@@ -1,43 +1,49 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  protect_from_forgery with: :exception
+  after_action :verify_authorized, :except => :index
 
   def index
-    @tasks = Task.all
-    respond_with(@tasks)
+    @tasks = policy_scope(Task)
   end
 
   def show
-    respond_with(@task)
+    authorize @task
   end
 
   def new
     @task = Task.new
-    respond_with(@task)
+    authorize @task
   end
 
   def edit
+    authorize @task
   end
 
   def create
     @task = Task.new(task_params)
     @task.save
-    respond_with(@task)
+    redirect_to tasks_path
+    authorize @task
   end
 
   def update
-  authorize @task
-  if @task.update(task_params)
-    redirect_to @task
-  else
-    render :edit
-  end
+    authorize @task
+    respond_to do |format|
+      if @task.update(task_params)
+        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
   end
 
   def destroy
     @task.destroy
-    respond_with(@task)
+    respond_to do |format|
+      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
+    end
   end
 
   private

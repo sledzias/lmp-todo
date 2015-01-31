@@ -1,31 +1,128 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Tasks</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Done</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% if policy(:task).match? %>
-      <% @tasks.each do |task| %>
-        <tr>
-          <td><%= task.done %></td>
-          <td><%= task.description %></td>
-          <td><%= link_to 'Show', task %></td>
-          <td><%= link_to 'Edit', edit_task_path(task) %></td>
-          <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
 <%= link_to 'New Task', new_task_path %>
+
+<div class="container">
+  <div id="todoapp">
+    <h1 class="text-center">LMP ToDo</h1>
+    <div class="row">
+      <table class="col-sm-8 col-sm-offset-2">       
+        <div class="input-group input-group-lg">
+          <tbody>
+            <% if policy(:task).match? %>
+              <% @tasks.each do |task| %>
+                <tr>
+                  <td>
+                    <span class="input-group-addon">
+                      <a href="#"><i class="fa fa-check"></i></a>
+                    </span>
+                  </td>
+                  <td>
+                    <form>
+                      <input class="edit form-control input-lg" value="<%= task.description %>">
+                    </form>
+                  </td>
+                  <td>
+                    <span class="input-group-btn">
+                      <button class="btn btn-default btn-lg destroy"><i class="glyphicon glyphicon-remove"></i></button>
+                    </span>
+                  </td>
+                </tr>
+              <%end%>
+            <%end%>
+          </tbody>
+        </div>
+      </table>
+        <!-- /input-group -->
+    </div>
+      <!-- /.col-lg-6 -->
+
+    </div>
+    <!-- /row -->
+
+    <div class="row">
+
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="input-group input-group-lg">
+                  <span class="input-group-btn">
+                    <button class="btn btn-success btn-lg"><i class="fa fa-chevron-right"></i></button>
+                  </span>
+
+          <form id="todo-form">
+            <input class="form-control input-lg" id="new-todo" placeholder="What needs to be done?" autofocus="">
+          </form>
+                  <span class="input-group-btn">
+                    <button class="btn btn-default btn-lg"><i class="glyphicon glyphicon-plus"></i></button>
+                  </span>
+        </div>
+        <!-- /input-group -->
+      </div>
+      <!-- /.col-lg-6 -->
+
+    </div>
+    <!-- /row -->
+
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <hr>
+        <!-- /divider -->
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-2">
+
+        <button class="btn btn-default btn-lg" id="toggle-all"><i class="fa fa-check"></i></button>
+        Mark all as complete
+      </div>
+      <div class="col-sm-4 text-right">
+
+      </div>
+    </div>
+    <!-- /row -->
+
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <hr>
+        <!-- /divider -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-2  text-center">
+                <span id="todo-count"><strong></strong>
+
+                </span>
+      </div>
+      <div class="col-sm-4 text-center">
+        <ul class="list-inline" id="filters">
+          <li>
+            <a class="btn btn-sm" href="#/">All</a>
+          </li>
+          <li>
+            <a class="btn btn-sm" href="#/active">Active <span class="badge badge-info">1</span></a>
+          </li>
+          <li>
+            <a class="btn btn-sm" href="/completed">Completed</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-2  text-center">
+        <button class="btn btn-sm btn-success" id="clear-completed">Clear completed (1)</button>
+      </div>
+
+    </div>
+    <!--/ row -->
+
+
+    <hr>
+
+
+    <hr>
+
+  </div>
+  <!--/ app -->
+</div><!--/ container -->
+
+<footer class="well">
+  Thanks <a href="http://todomvc.com/">TodoMVC</a>. Bootstrap by <a href="http://bootply.com/127322">Bootply</a>.
+</footer>
