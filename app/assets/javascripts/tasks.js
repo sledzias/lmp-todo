@@ -14,5 +14,10 @@
         $scope.newTaskdescription = '';
       });
     };
+
+    $scope.update = function(task){
+      $http.put('/tasks/' + task.id + '.json', {task: {description: task.description}} ).success(function(data){
+      });
+    };
   });
 })();

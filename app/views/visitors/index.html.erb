@@ -9,7 +9,7 @@
             <a href="#"><i class="fa fa-check"></i></a>
           </span>
           <form>
-            <input class="edit form-control input-lg" ng-model='task.description'>
+            <input class="edit form-control input-lg" ng-model='task.description' ng-blur='update(task)'>
           </form>
           <span class="input-group-btn">
             <button class="btn btn-default btn-lg destroy"><i class="glyphicon glyphicon-remove"></i></button>
