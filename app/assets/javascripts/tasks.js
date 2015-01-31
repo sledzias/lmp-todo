@@ -29,8 +29,25 @@
     $scope.markAll = function(){
       this.tasks.forEach(function(task){
         $http.put('/tasks/' + task.id + '.json', {task: {done: true}});
-        this.tasks = loaddata();
       });
+      this.tasks = loaddata();
+    };
+
+    $scope.setFilter = function(filter){
+      this.taskfilter = filter;
+    };
+
+    $scope.filterTasks = function(filter){
+      switch(filter){
+        case true:
+          return {done: true}
+          break;
+        case false:
+          return {done: false}
+          break;
+        default:
+          return ''
+      };
     };
   });
 })();

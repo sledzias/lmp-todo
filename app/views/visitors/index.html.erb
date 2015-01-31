@@ -2,7 +2,7 @@
   <div id="todoapp" ng-controller='TaskController'>
     <h1 class="text-center">LMP ToDo</h1>
 
-    <div class="row" ng-repeat='task in tasks'>
+    <div class="row" ng-repeat='task in tasks | filter: filterTasks(taskfilter)'>
       <div class="col-sm-8 col-sm-offset-2">
         <div class="input-group input-group-lg">
           <span class="input-group-addon">
@@ -85,13 +85,15 @@
       <div class="col-sm-4 text-center">
         <ul class="list-inline" id="filters">
           <li>
-            <a class="btn btn-sm" href="#/">All</a>
+            <a class="btn btn-sm" href="" ng-click='setFilter()'>All</a>
           </li>
           <li>
-            <a class="btn btn-sm" href="#/active">Active <span class="badge badge-info">1</span></a>
+            <a class="btn btn-sm" href="" ng-click='setFilter(false)'>
+              Active <span class="badge badge-info">1</span>
+            </a>
           </li>
           <li>
-            <a class="btn btn-sm" href="/completed">Completed</a>
+            <a class="btn btn-sm" href="" ng-click='setFilter(true)'>Completed</a>
           </li>
         </ul>
       </div>
