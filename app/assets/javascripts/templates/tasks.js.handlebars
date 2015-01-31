@@ -7,7 +7,7 @@
           </span>
           <form>
             {{!-- <input class="edit form-control input-lg" value={{task.description}}> --}}
-            {{input value=task.description class="edit form-control input-lg"}}
+            {{input value=task.description class="edit form-control input-lg" focus-in=saveChanges }}
           </form>
           <span class="input-group-btn">
             <button class="btn btn-default btn-lg destroy"><i class="glyphicon glyphicon-remove"></i></button>
