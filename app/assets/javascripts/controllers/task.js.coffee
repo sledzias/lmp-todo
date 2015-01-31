@@ -10,6 +10,6 @@ App.TaskController = Ember.ObjectController.extend
         done = @get('done')
         if done == true
           @set('done', false)
-        else if done == false
+        else
           @set('done', true)
         @get('model').save()

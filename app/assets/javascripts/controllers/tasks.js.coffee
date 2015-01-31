@@ -13,3 +13,8 @@ App.TasksController = Ember.ArrayController.extend
       description = @get('fields')
       task = @store.createRecord 'task', description
       task.save()
+
+    allDone: ->
+      tasks = @filterBy('done', false)
+      tasks.setEach('done', true)
+      tasks.invoke('save')
