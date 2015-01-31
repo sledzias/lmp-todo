@@ -1,23 +1,5 @@
 {{#each task in controller}}
-      <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
-        <div class="input-group input-group-lg">
-          <span class="input-group-addon">
-              <a href="#"><i class="fa fa-check mark-as-done task-done-checkmark"></i></a>
-          </span>
-          <form>
-            {{input value=task.description class="edit form-control input-lg" focus-out="saveChanges" }}
-          </form>
-          <span class="input-group-btn">
-            <button class="btn btn-default btn-lg destroy" {{action "deleteTask" task on="click" }}><i class="glyphicon glyphicon-remove"></i></button>
-          </span>
-        </div>
-        <!-- /input-group -->
-      </div>
-      <!-- /.col-lg-6 -->
-
-    </div>
-    <!-- /row -->
+  {{render 'task' task}}
 {{/each}}
 {{partial "new"}}
 

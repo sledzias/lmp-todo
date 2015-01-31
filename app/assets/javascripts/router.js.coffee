@@ -5,6 +5,5 @@ App.Router.reopen
   
 App.Router.map ()->
   @resource 'tasks', path: '/', ->
-    @route 'new'
     @resource 'task', path: '/tasks/:id'
 
