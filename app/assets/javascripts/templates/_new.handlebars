@@ -7,8 +7,7 @@
       </span>
 
       <form id="todo-form">
- {{!--        <input class="form-control input-lg" value="" placeholder="What needs to be done?" autofocus=""> --}}
- {{input placeholder="What needs to be done?" class="form-control input-lg" value=fields.description}}
+ {{input placeholder="What needs to be done?" class="form-control input-lg" value=fields.description autofocus=""}}
       </form>
       <span class="input-group-btn">
         <button class="btn btn-default btn-lg" id="create-btn"  {{action "createTask" on="click" }}><i class="glyphicon glyphicon-plus"></i></button>
