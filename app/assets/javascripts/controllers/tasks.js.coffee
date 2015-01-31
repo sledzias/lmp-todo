@@ -18,3 +18,8 @@ App.TasksController = Ember.ArrayController.extend
       tasks = @filterBy('done', false)
       tasks.setEach('done', true)
       tasks.invoke('save')
+
+    clearCompleted: ->
+      tasks = @filterBy('done', true)
+      tasks.invoke('deleteRecord')
+      tasks.invoke('save')
