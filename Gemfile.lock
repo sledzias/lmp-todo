@@ -20,6 +20,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.1)
+    active_model_serializers (0.9.3)
+      activemodel (>= 3.2)
     activejob (4.2.0)
       activesupport (= 4.2.0)
       globalid (>= 0.3.0)
@@ -44,6 +46,10 @@ GEM
     autoprefixer-rails (5.0.0.3)
       execjs
       json
+    barber (0.6.0)
+      ember-source
+      execjs
+      handlebars-source (>= 1.0.0.rc.4)
     bcrypt (3.1.9)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -87,6 +93,19 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    ember-data-source (1.0.0.beta.14.1)
+      ember-source (~> 1.8)
+    ember-rails (0.16.1)
+      active_model_serializers
+      barber (>= 0.6.0)
+      ember-data-source (>= 1.0.0.beta.5)
+      ember-source (>= 1.1.0)
+      execjs (>= 1.2)
+      handlebars-source (> 1.0.0)
+      jquery-rails (>= 1.0.17)
+      railties (>= 3.1)
+    ember-source (1.9.1)
+      handlebars-source (~> 2.0)
     erubis (2.7.0)
     execjs (2.2.2)
     factory_girl (4.5.0)
@@ -101,6 +120,7 @@ GEM
       railties (>= 3.2, < 5.0)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
+    handlebars-source (2.0.0)
     hike (1.2.3)
     i18n (0.7.0)
     interception (0.5)
@@ -138,6 +158,8 @@ GEM
     pry-rescue (1.4.1)
       interception (>= 0.5)
       pry
+    puma (2.11.0)
+      rack (>= 1.1, < 2.0)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
     quiet_assets (1.1.0)
@@ -258,6 +280,8 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_cleaner
   devise
+  ember-rails
+  ember-source
   factory_girl_rails
   faker
   font-awesome-rails
@@ -266,6 +290,7 @@ DEPENDENCIES
   launchy
   pry-rails
   pry-rescue
+  puma
   pundit
   quiet_assets
   rails (= 4.2.0)
