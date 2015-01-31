@@ -59,5 +59,19 @@
       });
       this.tasks = loaddata();
     };
+
+    $scope.checkTask = function(val){
+     if(val === true){
+       return 'greencheck'
+     }else{
+       return 'greycheck'
+     };
+    };
+
+    $scope.changeTask = function(task){
+      $http.put('/tasks/' + task.id + '.json', {task: {done: !task.done}}).success(function(){
+        $scope.tasks = loaddata();
+      });
+    };
   });
 })();
