@@ -6,3 +6,9 @@ App.TasksController = Ember.ArrayController.extend
     deleteTask:  (task)-> 
       task.destroyRecord().then =>
         @transitionToRoute 'tasks'
+    createTask: ->
+      description = @get('fields')
+      task = @store.createRecord 'task', description
+      task.save().then =>
+        @transitionToRoute 'tasks'
+
