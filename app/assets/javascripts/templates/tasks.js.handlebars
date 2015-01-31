@@ -40,18 +40,18 @@
       <div class="col-sm-4 text-center">
         <ul class="list-inline" id="filters">
           <li>
-            <a class="btn btn-sm" href="#/">All</a>
+            <a class="btn btn-sm" href="#/">All<span class="badge badge-info">{{allTasks}}</span></a>
           </li>
           <li>
-            <a class="btn btn-sm" href="#/active">Active <span class="badge badge-info">1</span></a>
+            <a class="btn btn-sm" href="#/active">Active <span class="badge badge-info">{{activeTasks}}</span></a>
           </li>
           <li>
-            <a class="btn btn-sm" href="/completed">Completed</a>
+            <a class="btn btn-sm" href="#">Completed<span class="badge badge-info">{{completedTasks}}</span></a>
           </li>
         </ul>
       </div>
       <div class="col-sm-2  text-center">
-        <button class="btn btn-sm btn-success" id="clear-completed" {{action "clearCompleted"  on="click"}}>Clear completed (1)</button>
+        <button class="btn btn-sm btn-success" id="clear-completed" {{action "clearCompleted"  on="click"}}>Clear completed ({{completedTasks}})</button>
       </div>
 
     </div>

@@ -2,6 +2,18 @@ App.TasksController = Ember.ArrayController.extend
   sortProperties: ['description']
   fields: {}
 
+  completedTasks: ( ->
+    @filterBy('done', true).get('length')
+    ).property('@each.done')
+
+  activeTasks: ( ->
+    @filterBy('done', false).get('length')
+    ).property('@each.done')
+
+  allTasks: ( ->
+    @get("content.length")
+    ).property('content.length')
+
   actions:
     saveChanges: -> @get('model').save()
 
