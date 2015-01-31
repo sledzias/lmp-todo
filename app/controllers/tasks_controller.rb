@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   respond_to :html
 
   def index
-    @tasks = Task.all
+    @tasks = policy_scope(Task)
     respond_with(@tasks)
   end
 
