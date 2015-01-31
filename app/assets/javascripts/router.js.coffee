@@ -4,5 +4,5 @@ App.Router.reopen
   rootURL: '/'
   
 App.Router.map ()->
-  # @resource('posts')
+  @resource 'tasks', path: '/'
 
