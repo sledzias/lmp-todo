@@ -13,6 +13,7 @@
         $scope.tasks = loaddata();
         $scope.newTaskdescription = '';
       });
+      this.taskfilter = false;
     };
 
     $scope.update = function(task){
@@ -48,6 +49,15 @@
         default:
           return ''
       };
+    };
+
+    $scope.clearCompleted = function(){
+      this.tasks.forEach(function(task){
+        if(task.done === true){
+          $http.delete('/tasks/' + task.id + '.json');
+        };
+      });
+      this.tasks = loaddata();
     };
   });
 })();
