@@ -1,11 +1,13 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_user!
   respond_to :html
 
   def index
     @tasks = policy_scope(Task)
-    respond_with(@tasks)
+    respond_with(@user) do |format|
+      format.html { render 'visitors/index' }
+    end
   end
 
   def show

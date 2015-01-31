@@ -1,4 +1,4 @@
-class PostPolicy < ApplicationPolicy
+class TaskPolicy < ApplicationPolicy
   class Scope
     attr_reader :user, :scope
 
