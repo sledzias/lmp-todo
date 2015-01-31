@@ -1,19 +1,19 @@
-<div class="container">
-  <div id="todoapp">
-
+<div class="container" ng-app='lmp'>
+  <div id="todoapp" ng-controller='TaskController'>
     <h1 class="text-center">LMP ToDo</h1>
 
-    <div class="row">
+    <div class="row" ng-repeat='task in tasks | filter: filterTasks(taskfilter)'>
       <div class="col-sm-8 col-sm-offset-2">
         <div class="input-group input-group-lg">
           <span class="input-group-addon">
-            <a href="#"><i class="fa fa-check"></i></a>
+            <a href="#"><i class="fa fa-check" ng-class="checkTask(task.done)" ng-click="changeTask(task)"></i></a>
           </span>
           <form>
-            <input class="edit form-control input-lg">
+            <input class="edit form-control input-lg" ng-model='task.description' ng-blur='update(task)'>
           </form>
           <span class="input-group-btn">
-            <button class="btn btn-default btn-lg destroy"><i class="glyphicon glyphicon-remove"></i></button>
+            <button class="btn btn-default btn-lg destroy" ng-click='destroy(task)'><i class="glyphicon
+            glyphicon-remove"></i></button>
           </span>
         </div>
         <!-- /input-group -->
@@ -32,10 +32,12 @@
                   </span>
 
           <form id="todo-form">
-            <input class="form-control input-lg" id="new-todo" placeholder="What needs to be done?" autofocus="">
+            <input class="form-control input-lg" id="new-todo" placeholder="What needs to be done?" autofocus="" ng-model='newTaskdescription'>
           </form>
                   <span class="input-group-btn">
-                    <button class="btn btn-default btn-lg"><i class="glyphicon glyphicon-plus"></i></button>
+                    <button class="btn btn-default btn-lg" ng-click='addTask(newTaskdescription, <%= current_user.id %>)'>
+                      <i class="glyphicon glyphicon-plus"></i>
+                    </button>
                   </span>
         </div>
         <!-- /input-group -->
@@ -56,7 +58,9 @@
     <div class="row">
       <div class="col-sm-4 col-sm-offset-2">
 
-        <button class="btn btn-default btn-lg" id="toggle-all"><i class="fa fa-check"></i></button>
+        <button class="btn btn-default btn-lg" id="toggle-all" ng-click='markAll()'>
+          <i class="fa fa-check"></i>
+        </button>
         Mark all as complete
       </div>
       <div class="col-sm-4 text-right">
@@ -81,18 +85,21 @@
       <div class="col-sm-4 text-center">
         <ul class="list-inline" id="filters">
           <li>
-            <a class="btn btn-sm" href="#/">All</a>
+            <a class="btn btn-sm" href="" ng-click='setFilter()'>All</a>
           </li>
           <li>
-            <a class="btn btn-sm" href="#/active">Active <span class="badge badge-info">1</span></a>
+            <a class="btn btn-sm" href="" ng-click='setFilter(false)'>
+              Active <span class="badge badge-info">1</span>
+            </a>
           </li>
           <li>
-            <a class="btn btn-sm" href="/completed">Completed</a>
+            <a class="btn btn-sm" href="" ng-click='setFilter(true)'>Completed</a>
           </li>
         </ul>
       </div>
       <div class="col-sm-2  text-center">
-        <button class="btn btn-sm btn-success" id="clear-completed">Clear completed (1)</button>
+        <button class="btn btn-sm btn-success" id="clear-completed" ng-click='clearCompleted()'>Clear completed (1)
+        </button>
       </div>
 
     </div>
