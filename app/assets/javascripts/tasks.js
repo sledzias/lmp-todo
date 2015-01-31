@@ -19,5 +19,11 @@
       $http.put('/tasks/' + task.id + '.json', {task: {description: task.description}} ).success(function(data){
       });
     };
+
+    $scope.destroy = function(task){
+      $http.delete('/tasks/' + task.id + '.json').success(function(data){
+        $scope.tasks = loaddata();
+      });
+    };
   });
 })();
