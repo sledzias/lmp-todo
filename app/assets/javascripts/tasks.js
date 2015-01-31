@@ -25,5 +25,12 @@
         $scope.tasks = loaddata();
       });
     };
+
+    $scope.markAll = function(){
+      this.tasks.forEach(function(task){
+        $http.put('/tasks/' + task.id + '.json', {task: {done: true}});
+        this.tasks = loaddata();
+      });
+    };
   });
 })();
