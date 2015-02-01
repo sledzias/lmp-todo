@@ -7,6 +7,12 @@ class TasksController < ApplicationController
     @task.mark_as_complete
     execute_redirect(tasks_path)
   end
+  
+  def destroy
+    authorize @task
+    @task.destroy
+    execute_redirect(tasks_path, "Task destroyed successfully.")
+  end
   def all
     @tasks = get_tasks
     render template: 'visitors/index'

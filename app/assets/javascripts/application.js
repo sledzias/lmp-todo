@@ -46,5 +46,12 @@ $( document ).ready(function() {
     $(".mark_as_complete").click(function(){
       executePostRequest('/tasks/'+this.id+'/mark_as_complete')
     });
+
+    $(".destroy").click(function(){
+      $.ajax({
+        type: 'DELETE',
+        url: '/tasks/'+this.id+'/destroy',
+      });
+    });
     
 });
