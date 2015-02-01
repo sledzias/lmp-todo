@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   post 'tasks/mark_all_as_complete' => 'tasks#mark_all_as_complete'
   
   delete 'tasks/:id/destroy' => 'tasks#destroy'
+  
+  patch 'tasks/:id/update' => 'tasks#update'
+  
 end

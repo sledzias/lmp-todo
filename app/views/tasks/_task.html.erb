@@ -5,7 +5,7 @@
             <a href="#" class="mark_as_complete" id="<%= task.id %>"><i class="fa fa-check <%= TaskHelper.get_task_status_class(task) %>"></i></a>
           </span>
           <form>
-            <input class="edit form-control input-lg" value="<%= task.description %>">
+            <input class="edit form-control input-lg editafterblur" value="<%=task.description%>" id="<%= task.id %>">
           </form>
           <span class="input-group-btn">
             

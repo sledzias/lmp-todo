@@ -19,6 +19,15 @@ class TasksController < ApplicationController
     execute_redirect(tasks_path, "Tasks cleared successfully.")
   end
   
+  def update
+    authorize @task
+    if @task.update(task_params)
+      execute_redirect(tasks_path, "Task updated successfully.")
+    else
+      execute_redirect(tasks_path, "Task update failure.")
+    end
+  end
+  
   def destroy
     authorize @task
     @task.destroy
@@ -60,6 +69,9 @@ class TasksController < ApplicationController
       policy_scope(Task)
     end
 
+    def task_params
+      params.require(:task).permit(:description)
+    end
 
     def execute_redirect(target, notice=nil, alert=nil)
       flash[:notice] = notice unless notice.nil?

@@ -41,6 +41,8 @@ function executeDeleteRequest(url) {
   $('#'+formId).submit();
 }
 
+var oldValue;
+
 $( document ).ready(function() {
 
     $(".mark_as_complete").click(function(){
@@ -49,6 +51,20 @@ $( document ).ready(function() {
 
     $("#toggle-all").click(function(){
       executePostRequest('/tasks/mark_all_as_complete')
+    });
+
+    $(".editafterblur").blur(function(){
+      if(this.value==oldValue)
+        return;
+      $.ajax({
+        type: 'PATCH',
+        data: { task: {description:this.value} },
+        url: '/tasks/'+this.id+'/update',
+      });
+    });
+    
+    $(".editafterblur").focus(function() {
+      oldValue=this.value;
     });
 
     $("#clear-completed").click(function(){
