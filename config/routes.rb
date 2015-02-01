@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'tasks/all' => 'tasks#all'
   
   post 'tasks/:id/mark_as_complete' => 'tasks#mark_as_complete'
+  post 'tasks/clear_completed' => 'tasks#clear_completed'
   post 'tasks/mark_all_as_complete' => 'tasks#mark_all_as_complete'
   
   delete 'tasks/:id/destroy' => 'tasks#destroy'

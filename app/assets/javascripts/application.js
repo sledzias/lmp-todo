@@ -51,6 +51,10 @@ $( document ).ready(function() {
       executePostRequest('/tasks/mark_all_as_complete')
     });
 
+    $("#clear-completed").click(function(){
+      executePostRequest('/tasks/clear_completed')
+    });
+
     $(".destroy").click(function(){
       $.ajax({
         type: 'DELETE',
