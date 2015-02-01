@@ -2,7 +2,7 @@
       <div class="col-sm-8 col-sm-offset-2">
         <div class="input-group input-group-lg">
           <span class="input-group-addon">
-            <a href="#"><i class="fa fa-check"></i></a>
+            <a href="#" class="mark_as_complete" id="<%= task.id %>"><i class="fa fa-check <%= TaskHelper.get_task_status_class(task) %>"></i></a>
           </span>
           <form>
             <input class="edit form-control input-lg" value="<%= task.description %>">

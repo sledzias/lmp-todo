@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   
   get 'tasks' => 'tasks#all'
   get 'tasks/all' => 'tasks#all'
+  
+  post 'tasks/:id/mark_as_complete' => 'tasks#mark_as_complete'
 end

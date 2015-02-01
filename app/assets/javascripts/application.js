@@ -14,3 +14,37 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+
+function executePostRequest(url) {
+  executeRequestWithMethod(url, 'post');
+}
+
+function executeRequestWithMethod(url, method) {
+  divId = 'hidden-div'
+  formId = 'hidden_post_form'
+  if($('#'+divId).length===0);
+    $("body").append('<div id="'+divId+'" style="display:none;"></div>');
+  $('#'+divId).html(
+    '<form action="'+url+'" id="'+formId+'" method="'+method+'"></form>'
+  );
+  $('#'+formId).submit();
+}
+
+function executeDeleteRequest(url) {
+  divId = 'hidden-div'
+  formId = 'hidden_post_form'
+  if($('#'+divId).length===0);
+    $("body").append('<div id="'+divId+'" style="display:none;"></div>');
+  $('#'+divId).html(
+    '<form action="'+url+'" id="'+formId+'" method="delete"></form>'
+  );
+  $('#'+formId).submit();
+}
+
+$( document ).ready(function() {
+
+    $(".mark_as_complete").click(function(){
+      executePostRequest('/tasks/'+this.id+'/mark_as_complete')
+    });
+    
+});
