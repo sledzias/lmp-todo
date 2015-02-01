@@ -47,6 +47,10 @@ $( document ).ready(function() {
       executePostRequest('/tasks/'+this.id+'/mark_as_complete')
     });
 
+    $("#toggle-all").click(function(){
+      executePostRequest('/tasks/mark_all_as_complete')
+    });
+
     $(".destroy").click(function(){
       $.ajax({
         type: 'DELETE',

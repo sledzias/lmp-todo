@@ -8,6 +8,10 @@ class TasksController < ApplicationController
     execute_redirect(tasks_path)
   end
   
+  def mark_all_as_complete
+    get_tasks.where(done:false).update_all(done: true)
+    execute_redirect(tasks_path, "All tasks marked successfully.")
+  end
   def destroy
     authorize @task
     @task.destroy
