@@ -18,6 +18,16 @@ class TasksController < ApplicationController
     get_tasks.where(:done => true).destroy_all()
     execute_redirect(tasks_path, "Tasks cleared successfully.")
   end
+ 
+  def create
+    @task = Task.new(task_params)
+    @task.user=current_user
+    if @task.save
+      execute_redirect(tasks_path, "Task created successfully.")
+    else
+      execute_redirect(tasks_path, nil, "Task created successfully.")
+    end
+  end
   
   def update
     authorize @task

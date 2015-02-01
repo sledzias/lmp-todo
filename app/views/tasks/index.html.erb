@@ -7,27 +7,7 @@
       <%= render(:partial => "tasks/task", :locals => {:task => task})%>
     <% end %>
 
-    <div class="row">
-
-      <div class="col-sm-8 col-sm-offset-2">
-        <div class="input-group input-group-lg">
-                  <span class="input-group-btn">
-                    <button class="btn btn-success btn-lg"><i class="fa fa-chevron-right"></i></button>
-                  </span>
-
-          <form id="todo-form">
-            <input class="form-control input-lg" id="new-todo" placeholder="What needs to be done?" autofocus="">
-          </form>
-                  <span class="input-group-btn">
-                    <button class="btn btn-default btn-lg"><i class="glyphicon glyphicon-plus"></i></button>
-                  </span>
-        </div>
-        <!-- /input-group -->
-      </div>
-      <!-- /.col-lg-6 -->
-
-    </div>
-    <!-- /row -->
+    <%= render 'tasks/new_task' %>
 
     <%= render 'layouts/divider' %>
 

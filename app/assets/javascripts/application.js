@@ -49,6 +49,10 @@ $( document ).ready(function() {
       executePostRequest('/tasks/'+this.id+'/mark_as_complete')
     });
 
+    $( "#create_new_task" ).click(function() {
+      $("#todo-form").submit();
+    });
+
     $("#toggle-all").click(function(){
       executePostRequest('/tasks/mark_all_as_complete')
     });
