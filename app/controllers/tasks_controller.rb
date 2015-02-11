@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy, :toggle_done]
-  after_action :verify_authorized, except: :create
+  after_action :verify_authorized, except: [:create, :complete_all]
+  after_action :verify_policy_scoped, only: :complete_all
   respond_to :html
 
   def new
@@ -37,6 +38,15 @@ class TasksController < ApplicationController
     authorize @task
     @task.done = !@task.done
     @task.save
+    redirect_to tasks_path
+  end
+
+  def complete_all
+    @tasks = policy_scope(Task)
+    @tasks.each do |t|
+      t.done = true
+      t.save
+    end
     redirect_to tasks_path
   end
 
