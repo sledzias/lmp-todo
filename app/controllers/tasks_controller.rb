@@ -1,23 +1,15 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-
+  after_action :verify_authorized, except: :create
   respond_to :html
-
-  def index
-    @tasks = Task.all
-    respond_with(@tasks)
-  end
-
-  def show
-    respond_with(@task)
-  end
 
   def new
     @task = Task.new
-    respond_with(@task)
+    respond_with @task
   end
 
   def edit
+    authorize @task
   end
 
   def create
@@ -27,13 +19,15 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task.update(task_params)
-    respond_with(@task)
+    authorize @task
+    @task.update task_params
+    respond_with @task
   end
 
   def destroy
+    authorize @task
     @task.destroy
-    respond_with(@task)
+    redirect_to tasks_path
   end
 
   private
