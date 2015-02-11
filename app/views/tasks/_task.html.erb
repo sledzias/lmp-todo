@@ -1,8 +1,14 @@
 <div class="col-sm-8 col-sm-offset-2">
   <div class="input-group input-group-lg">
-<span class="input-group-addon">
-<a href="#"><i class="fa fa-check"></i></a>
-</span>
+    <span class="input-group-addon">
+      <%= link_to task_toggle_path(id: task.id) do %>
+          <% if task.done? %>
+              <i style="color: green;" class="fa fa-check"></i>
+          <% else %>
+              <i style="color: gray;" class="fa fa-check"></i>
+          <% end %>
+      <% end %>
+    </span>
     <form>
       <input class="edit form-control input-lg" value=<%= task.description %>>
     </form>

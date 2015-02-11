@@ -23,6 +23,10 @@ class TaskPolicy < ApplicationPolicy
     check_user
   end
 
+  def toggle_done?
+    check_user
+  end
+
   private
   def check_user
     user.id == record.user.id

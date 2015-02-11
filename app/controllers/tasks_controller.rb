@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :toggle_done]
   after_action :verify_authorized, except: :create
   respond_to :html
 
@@ -30,6 +30,13 @@ class TasksController < ApplicationController
   def destroy
     authorize @task
     @task.destroy
+    redirect_to tasks_path
+  end
+
+  def toggle_done
+    authorize @task
+    @task.done = !@task.done
+    @task.save
     redirect_to tasks_path
   end
 
