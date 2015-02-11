@@ -13,9 +13,12 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new task_params
-    @task.save
-    respond_with @task
+    @task = Task.new(task_params)
+    if not current_user.nil?
+      @task.user_id = current_user.id
+      @task.save
+    end
+    redirect_to tasks_path
   end
 
   def update
