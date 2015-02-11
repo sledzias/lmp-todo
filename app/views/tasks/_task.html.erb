@@ -9,12 +9,14 @@
           <% end %>
       <% end %>
     </span>
-    <form>
-      <input class="edit form-control input-lg" value=<%= task.description %>>
-    </form>
-    <span class="input-group-btn">
-        <button class="btn btn-default btn-lg destroy"><i class="glyphicon glyphicon-remove"></i></button>
-    </span>
+    <%= simple_form_for task do |f| %>
+        <%= f.input :description, as: :string, label: false, input_html: { class: 'edit form-control input-lg' } %>
+        <span class="input-group-btn">
+            <%= link_to task_path(task), class: 'btn btn-default btn-lg destroy', method: :delete do %>
+                <i class="glyphicon glyphicon-remove"></i>
+            <% end %>
+        </span>
+    <% end %>
   </div>
   <!-- /input-group -->
 </div>
