@@ -13,9 +13,9 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = Task.new task_params
     @task.save
-    respond_with(@task)
+    respond_with @task
   end
 
   def update

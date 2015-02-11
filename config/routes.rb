@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :tasks
+  get '/tasks', to: 'visitors#index'
 
   root to: 'visitors#index'
   devise_for :users
